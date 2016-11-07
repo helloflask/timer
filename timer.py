@@ -11,29 +11,24 @@ https://github.com/helloflask/timer-flask
 ---------------------------------
 MIT license.
 """
-from time import sleep
-from flask import Flask, render_template, flash, url_for
+from flask import Flask, render_template, url_for, redirect
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    render_template('index.html')
-
+    return render_template('index.html', num=0)
 
 @app.route('/<int:num>s')
 def seconds(num):
-    sleep(num)
-    return render_template('over.html')
+    return redirect(url_for('.index', num=num))
 
 
 @app.route('/<int:num>m')
 def minutes(num):
-    sleep(num*60)
-    return render_template('over.html')
+    return redirect(url_for('.index', num=num))
 
 
 @app.route('/<int:num>h')
 def hours(num):
-    sleep(num*3600)
-    return render_template('over.html')
+    return redirect(url_for('.index', num=num))
