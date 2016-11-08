@@ -1,0 +1,130 @@
+#time-input {
+  width: 70px;
+  height: 25px;
+  border-radius: 5px;
+}
+
+.startButton {
+	-moz-box-shadow: 3px 4px 0px 0px #bbdaf7;
+	-webkit-box-shadow: 3px 4px 0px 0px #bbdaf7;
+	box-shadow: 3px 4px 0px 0px #bbdaf7;
+	background-color:#79bbff;
+	-moz-border-radius:18px;
+	-webkit-border-radius:18px;
+	border-radius:18px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:12px;
+	padding:5px 16px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+}
+.startButton:hover {
+	background-color:#378de5;
+}
+.startButton:active {
+	position:relative;
+	top:1px;
+}
+
+.workButton {
+	-moz-box-shadow:inset 0px 1px 0px 0px #f7c5c0;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #f7c5c0;
+	box-shadow:inset 0px 1px 0px 0px #f7c5c0;
+	background-color:#fc8d83;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #d83526;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 7px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #b23e35;
+}
+.workButton:hover {
+	background-color:#e4685d;
+}
+.workButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+.restButton {
+	-moz-box-shadow:inset 0px 1px 0px 0px #fce2c1;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #fce2c1;
+	box-shadow:inset 0px 1px 0px 0px #fce2c1;
+	background-color:#ffc477;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #eeb44f;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 7px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #cc9f52;
+}
+.restButton:hover {
+	background-color:#fb9e25;
+}
+.restButton:active {
+	position:relative;
+	top:1px;
+}
+
+.helpButton {
+    background: #000;
+    padding: 5px 10px;
+    margin-left: 20px;
+    color: #fff;
+}
+
+.usage {
+    font-size: 16px;
+    font-family: PingFangSC-Light,'helvetica neue','hiragino sans gb',tahoma,
+                     'microsoft yahei ui','microsoft yahei',simsun,sans-serif;
+    width: 400px;
+    height: 400px;
+    padding: 20px;
+    margin: 10px 0 0 50px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.timer {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+    vertical-align: middle;
+}
+
+#time {
+     display: none;
+}
+
+#container {
+  width: 550px;
+  height: 550px;
+  margin: auto;
+}
+
+.footer {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  text-align: center;
+}

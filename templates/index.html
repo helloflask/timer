@@ -1,5 +1,137 @@
-{% extends "base.html" %}
+{% block head %}
+<title>计时器 - Hello, Flask!</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="{{ url_for('static', filename='timer.css') }}" rel="stylesheet">
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+{% endblock %}
 
 {% block page_content %}
-Hello!
+<audio id="over_music">
+    <source src="{{ url_for('static', filename='beepbeep.mp3') }}">
+</audio>
+
+<div>
+    <form method="POST" style="display:inline">
+        {{ form.csrf_token }}
+        {{ form.time(id="time-input", placeholder="minutes") }}
+        {{ form.submit(class="startButton") }}
+    </form>
+    &nbsp;&nbsp;
+    <a class="workButton" href="{{ url_for('minutes', num=25) }}">25 Minutes</a>
+    <a class="restButton" href="{{ url_for('minutes', num=5) }}">5 Minutes</a>
+    <a class="helpButton" id="help-btn">?</a>
+    <div class="usage" id="help-info">
+        <h3>欢迎使用timer，一个简单的计时器</h3><br>
+      <p><b>你可以通过三种方式使用它：</b><br><br>
+        一、通过在网址的后面加入时间数来设定一个计时，比如：<br>
+        /30（这将开始一个30分钟的计时，默认单位为分钟）<br>
+        /20s（这将开始一个20秒的计时）<br>
+        /5m（这将开始一个5分钟的计时）<br>
+        /2h（这将开始一个2小时的计时）<br><br>
+        二、通过点击网页上部提供的按钮进入相应的计时；<br><br>
+        三、通过在输入框（左上角）输入分钟数，点击START按钮开始计时。<br><br>
+      更多信息请见右下角链接。Have a nice day!</p>
+    </div>
+</div>
+
+<a href="https://github.com/helloflask/timer-flask" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+<div class="timer">
+    <div id="container">
+    <h2 id="time"></h2>
+    </div>
+</div>
+
+<div class="footer">
+    <a href="https://zhuanlan.zhihu.com/flask" target="_blank">Hello, Flask!</a> |
+    <a href="http://withlihui.com" target="_blank">Blog</a>
+    <hr>
+    <a href="http://flask.pocoo.org/"><img
+   src="http://flask.pocoo.org/static/badges/powered-by-flask-s.png"
+   alt="powered by Flask"
+   title="powered by Flask"></a>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/progressbar.js') }}"></script>
+<script>
+// timer function
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    var refresh = setInterval(function () {
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.text(minutes + " : " + seconds);
+
+        if (--timer < 0) {
+            display.text("Time Over!");
+            clearInterval(refresh);  // exit refresh loop
+            var music = $("#over_music")[0];
+            music.play();
+            alert("Time Over!");
+        }
+    }, 1000);
+
+}
+
+// start timer
+jQuery(function ($) {
+    var Minutes = {{ num }},
+        display = $('#time');
+    startTimer(Minutes, display);
+});
+
+// progress bar
+var bar = new ProgressBar.Circle(container, {
+  color: '#eee',
+  // This has to be the same size as the maximum width to
+  // prevent clipping
+  strokeWidth: 4,
+  trailWidth: 2,
+  easing: 'linear',
+  duration: {{ num * 1000 + 1040 }},
+  text: {
+    autoStyleContainer: false
+  },
+  from: { color: '#FFEA82', width: 2 },
+  to: { color: '#4CAF50', width: 4 },
+  // Set default step function for all animate calls
+  step: function(state, circle) {
+    circle.path.setAttribute('stroke', state.color);
+    circle.path.setAttribute('stroke-width', state.width);
+ var barText = $("#time").html();
+      circle.setText(barText);
+  }
+});
+bar.text.style.fontFamily = 'FranklinGothic, Verdana, Arial, sans-serif';
+bar.text.style.fontSize = '80px';
+bar.text.style.fontWeight = 'bold';
+bar.text.style.color = '#000';
+
+bar.animate(1.0);  // Number from 0.0 to 1.0
+
+// center the content
+$(window).resize(function(){
+
+	$('.timer').css({
+		position:'absolute',
+		left: ($(window).width() - $('.timer').outerWidth())/2,
+		top: ($(window).height() - $('.timer').outerHeight())/2
+	});
+
+});
+
+// To initially run the function:
+$(window).resize();
+// show help information
+$('#help-info').hide();
+$('#help-btn').hover( function() { $('#help-info').toggle(); } );
+</script>
 {% endblock %}
