@@ -20,7 +20,7 @@ app.config['SECRET_KEY'] = 'a very secret string'
 
 @app.route('/')
 def index():
-    return redirect(url_for('timer', num=25*60))
+    return redirect(url_for('timer', num=11*60+11))
 
 
 @app.route('/<int:num>s')
