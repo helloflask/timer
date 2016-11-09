@@ -1,7 +1,7 @@
 {% block head %}
 <title>计时器 - Hello, Flask!</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="{{ url_for('static', filename='timer.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
 <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 {% endblock %}
 
@@ -28,24 +28,23 @@
 
     <div class="usage" id="help-info">
         <h3>欢迎使用timer，一个简单的计时器</h3><br>
-      <p><b>你可以通过三种方式使用它：</b><br><br>
+        <p><b>你可以通过三种方式使用它：</b><br><br>
           一、通过在输入框（左上角）输入时间，点击START按钮开始计时。<br>
           支持纯数字和s、m、h结尾的计时（例如12/30s/20m/2h）。
           <br><br>
           二、通过在网址的后面加入时间数来设定一个计时，支持的参数同上，比如：
           ~.com/25m（将开始一个25分钟的计时）<br><br>
-        三、通过点击网页上部提供的按钮进入相应的计时。<br><br>
-        <br><br>
-      更多信息请见右下角链接。Have a nice day!</p>
+          三、通过点击网页上部提供的按钮进入相应的计时。<br><br>
+          更多信息请见右下角链接。Have a nice day!
+        </p>
     </div>
 </div>
-
 
 <a href="https://github.com/helloflask/timer-flask" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
 
 <div class="timer">
     <div id="container">
-    <h2 id="time"></h2>
+        <h2 id="time"></h2>
     </div>
 </div>
 
@@ -59,86 +58,14 @@
    title="powered by Flask"></a>
 </div>
 
+<div class="data">
+    <div id="minutes">{{ num }}</div>
+    <div id="duration">{{ num * 1000 + 1040 }}</div>
+</div>
 {% endblock %}
 
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/progressbar.js') }}"></script>
-<script>
-// timer function
-function startTimer(duration, display) {
-    var timer = duration, minutes, seconds;
-    var refresh = setInterval(function () {
-        minutes = parseInt(timer / 60, 10)
-        seconds = parseInt(timer % 60, 10);
-
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        display.text(minutes + " : " + seconds);
-
-        if (--timer < 0) {
-            display.text("Time Over!");
-            clearInterval(refresh);  // exit refresh loop
-            var music = $("#over_music")[0];
-            music.play();
-            alert("Time Over!");
-        }
-    }, 1000);
-
-}
-
-// start timer
-jQuery(function ($) {
-    var Minutes = {{ num }},
-        display = $('#time');
-    startTimer(Minutes, display);
-});
-
-// progress bar
-var bar = new ProgressBar.Circle(container, {
-  color: '#eee',
-  // This has to be the same size as the maximum width to
-  // prevent clipping
-  strokeWidth: 4,
-  trailWidth: 2,
-  easing: 'linear',
-  duration: {{ num * 1000 + 1040 }},
-  text: {
-    autoStyleContainer: false
-  },
-  from: { color: '#FFEA82', width: 2 },
-  to: { color: '#4CAF50', width: 4 },
-  // Set default step function for all animate calls
-  step: function(state, circle) {
-    circle.path.setAttribute('stroke', state.color);
-    circle.path.setAttribute('stroke-width', state.width);
- var barText = $("#time").html();
-      circle.setText(barText);
-  }
-});
-bar.text.style.fontFamily = 'FranklinGothic, Verdana, Arial, sans-serif';
-bar.text.style.fontSize = '80px';
-bar.text.style.fontWeight = 'bold';
-bar.text.style.color = '#000';
-
-bar.animate(1.0);  // Number from 0.0 to 1.0
-
-// center the content
-$(window).resize(function(){
-
-	$('.timer').css({
-		position:'absolute',
-		left: ($(window).width() - $('.timer').outerWidth())/2,
-		top: ($(window).height() - $('.timer').outerHeight())/2
-	});
-
-});
-
-// To initially run the function:
-$(window).resize();
-// show help information
-$('#help-info').hide();
-$('#help-btn').hover( function() { $('#help-info').toggle(); } );
-</script>
+<script src="{{ url_for('static', filename='js/timer.js') }}"></script>
 {% endblock %}
