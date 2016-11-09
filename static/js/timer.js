@@ -12,11 +12,11 @@ function startTimer(duration, display) {
         display.text(minutes + " : " + seconds);
 
         if (--timer < 0) {
-            display.text("Time Over!");
+            display.text("Time's Up!");
             clearInterval(refresh);  // exit refresh loop
             var music = $("#over_music")[0];
             music.play();
-            alert("Time Over!");
+            alert("Time's Up!");
         }
     }, 1000);
 
