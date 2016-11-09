@@ -4,7 +4,7 @@ A simple countdown timer made with Flask and JavaScript.
 ## DEMO
 http://timertimer.herokuapp.com/
 
-![demo](https://github.com/helloflask/timer-flask/)
+![demo](https://raw.githubusercontent.com/helloflask/timer-flask/master/static/demo.png)
 
 ## Versions
 Flask==0.11.1  
