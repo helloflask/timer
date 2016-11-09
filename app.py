@@ -11,6 +11,7 @@ https://github.com/helloflask/timer-flask
 ---------------------------------
 MIT license.
 """
+import re
 from flask import Flask, render_template, url_for, redirect, request, flash
 
 app = Flask(__name__)
@@ -28,8 +29,9 @@ def timer(num):
 @app.route('/custom', methods=['GET', 'POST'])
 def custom():
     time = request.form.get('time', 180)
-
-    if time[-1] not in 'smh0123456789' or time[-2] not in '0123456789':
+    # use re to validate input data
+    m = re.match('\d+[smh]?$', time)
+    if m is None:
         flash(u'请输入一个有效的时间，例如34、20s、15m、2h')
         return redirect(url_for('index'))
 
