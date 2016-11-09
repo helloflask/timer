@@ -33,7 +33,7 @@
           支持纯数字和s、m、h结尾的计时，例如：12/30s/20m/2h。
           <br><br>
           二、通过在网址的后面加入时间数来设定一个计时，支持的参数同上，比如：
-          ~.com/25m（将开始一个25分钟的计时）<br><br>
+          timertimer.herokuapp.com/25m（将开始一个25分钟的计时）<br><br>
           三、通过点击网页上部提供的按钮进入相应的计时。<br><br>
           更多信息请见右下角链接。Have a nice day!
         </p>
@@ -65,7 +65,7 @@
 <script src="{{ url_for('static', filename='js/timer.js') }}"></script>
 <script>
   var Minutes = {{ num }};
-  
+
 // progress bar
 var bar = new ProgressBar.Circle(container, {
     color: '#eee',
