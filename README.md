@@ -3,10 +3,8 @@ A simple countdown timer made with Flask and JavaScript.
 
 ## Versions
 Flask==0.11.1  
-Flask-WTF==0.12  
 Jinja2==2.8  
 Werkzeug==0.11.11  
-WTForms==2.1  
 
 ## Installation
 Change to app directory, use `virtualenv` create and activate virtual enviroment.  

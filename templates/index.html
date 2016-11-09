@@ -11,15 +11,21 @@
 </audio>
 
 <div>
-    <form method="POST" style="display:inline">
-        {{ form.csrf_token }}
-        {{ form.time(id="time-input", placeholder="minutes") }}
-        {{ form.submit(class="startButton") }}
+    <form method="POST" action="{{ url_for('custom') }}" style="display:inline">
+        <input name="time" class="time-input" placeholder="example: 12/30s/20m/2h">
+        <input type="submit" class="startButton" value="START">
     </form>
     &nbsp;&nbsp;
     <a class="workButton" href="{{ url_for('minutes', num=25) }}">25 Minutes</a>
     <a class="restButton" href="{{ url_for('minutes', num=5) }}">5 Minutes</a>
     <a class="helpButton" id="help-btn">?</a>
+
+    {% for message in get_flashed_messages() %}
+    <div class="alert-info">
+        {{ message }}
+    </div>
+    {% endfor %}
+
     <div class="usage" id="help-info">
         <h3>欢迎使用timer，一个简单的计时器</h3><br>
       <p><b>你可以通过三种方式使用它：</b><br><br>
@@ -34,6 +40,7 @@
     </div>
 </div>
 
+
 <a href="https://github.com/helloflask/timer-flask" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
 
 <div class="timer">
@@ -43,8 +50,8 @@
 </div>
 
 <div class="footer">
-    <a href="https://zhuanlan.zhihu.com/flask" target="_blank">Hello, Flask!</a> |
-    <a href="http://withlihui.com" target="_blank">Blog</a>
+    <a href="http://withlihui.com" target="_blank">Blog</a> |
+    <a href="https://zhuanlan.zhihu.com/flask" target="_blank">Hello, Flask!</a>
     <hr>
     <a href="http://flask.pocoo.org/"><img
    src="http://flask.pocoo.org/static/badges/powered-by-flask-s.png"

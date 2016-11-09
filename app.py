@@ -11,32 +11,33 @@ https://github.com/helloflask/timer-flask
 ---------------------------------
 MIT license.
 """
-from flask import Flask, render_template, url_for, redirect
-from flask_wtf import Form
-from wtforms import StringField, SubmitField
-from wtforms.validators import Required, ValidationError
+from flask import Flask, render_template, url_for, redirect, request, flash
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'a very secret string'
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    return redirect(url_for('timer', num=180))
-
+    return redirect(url_for('timer', num=11*60+11))
 
 @app.route('/<int:num>s', methods=['GET', 'POST'])
 @app.route('/<int:num>', methods=['GET', 'POST'])
 def timer(num):
-    form = TimeForm()
-    if form.validate_on_submit():
-        time = form.time.data
-        if time[-1] not in 'smh':
-            return redirect(url_for('timer', num=time))
-        else:
-            type = {'s': 'timer', 'm': 'minutes', 'h': 'hours'}
-            return redirect(url_for(type[time[-1]], num=time[:-1]))
-    return render_template('index.html', form=form, num=num)
+    return render_template('index.html', num=num)
 
+@app.route('/custom', methods=['GET', 'POST'])
+def custom():
+    time = request.form.get('time', 180)
+
+    if time[-1] not in 'smh0123456789' or time[-2] not in '0123456789':
+        flash(u'请输入一个有效的时间，例如34、20s、15m、2h')
+        return redirect(url_for('index'))
+
+    if time[-1] not in 'smh':
+        return redirect(url_for('timer', num=int(time)))
+    else:
+        type = {'s': 'timer', 'm': 'minutes', 'h': 'hours'}
+        return redirect(url_for(type[time[-1]], num=int(time[:-1])))
 
 @app.route('/<int:num>m', methods=['GET', 'POST'])
 def minutes(num):
@@ -52,10 +53,8 @@ def hours(num):
 def pomodoro():
     return render_template('index.html')
 
-class TimeForm(Form):
-    time = StringField()
-    submit = SubmitField(u'提交')
 
-    def validate_time(self, field):
-        if field.data not in 'smh0123456789':
-            raise ValidationError(u'请输入一个有效的时间，参见帮助')
+@app.errorhandler(404)
+def page_not_fouond(e):
+    flash(u'访问地址出错了，鼠标放在问号上了解更多: )')
+    return redirect(url_for('timer', num=244))
