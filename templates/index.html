@@ -30,7 +30,7 @@
         <h3>欢迎使用timer，一个简单的计时器</h3><br>
         <p><b>你可以通过三种方式使用它：</b><br><br>
           一、通过在输入框（左上角）输入时间，点击START按钮开始计时。<br>
-          支持纯数字和s、m、h结尾的计时（例如12/30s/20m/2h）。
+          支持纯数字和s、m、h结尾的计时，例如：12/30s/20m/2h。
           <br><br>
           二、通过在网址的后面加入时间数来设定一个计时，支持的参数同上，比如：
           ~.com/25m（将开始一个25分钟的计时）<br><br>
@@ -57,15 +57,42 @@
    alt="powered by Flask"
    title="powered by Flask"></a>
 </div>
-
-<div class="data">
-    <div id="minutes">{{ num }}</div>
-    <div id="duration">{{ num * 1000 + 1040 }}</div>
-</div>
 {% endblock %}
 
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/progressbar.js') }}"></script>
 <script src="{{ url_for('static', filename='js/timer.js') }}"></script>
+<script>
+  var Minutes = {{ num }};
+  
+// progress bar
+var bar = new ProgressBar.Circle(container, {
+    color: '#eee',
+    // This has to be the same size as the maximum width to
+    // prevent clipping
+    strokeWidth: 4,
+    trailWidth: 2,
+    easing: 'linear',
+    duration: {{ num * 1000 + 1040 }},
+    text: {
+    autoStyleContainer: false
+    },
+    from: { color: '#FFEA82', width: 2 },
+    to: { color: '#4CAF50', width: 4 },
+      // Set default step function for all animate calls
+  step: function(state, circle) {
+    circle.path.setAttribute('stroke', state.color);
+    circle.path.setAttribute('stroke-width', state.width);
+var barText = $("#time").html();
+    circle.setText(barText);
+  }
+});
+bar.text.style.fontFamily = 'FranklinGothic, Verdana, Arial, sans-serif';
+bar.text.style.fontSize = '80px';
+bar.text.style.fontWeight = 'bold';
+bar.text.style.color = '#000';
+
+bar.animate(1.0);  // Number from 0.0 to 1.0
+</script>
 {% endblock %}
