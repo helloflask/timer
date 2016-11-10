@@ -148,3 +148,51 @@ body {
   border: 2px solid #000;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
+
+/* responsive media queries */
+
+@media (min-width: 480px) {
+    #container {
+        width: 250px;
+        height: 250px;
+       margin: auto;
+    }
+    .progressbar-text {
+        font-size: 30px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    #container {
+        width: 350px;
+        height: 350px;
+        margin: auto;
+    }
+
+    .progressbar-text {
+        font-size: 50px !important;
+    }
+}
+
+@media (min-width: 980px) {
+    #container {
+        width: 500px;
+        height: 500px;
+        margin: auto;
+    }
+
+    .progressbar-text {
+        font-size: 70px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    #container {
+        width: 550px;
+        height: 550px;
+        margin: auto;
+    }
+    .progressbar-text {
+        font-size: 80px !important;
+    }
+}
