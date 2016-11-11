@@ -151,7 +151,7 @@ body {
 
 /* responsive media queries */
 
-@media (min-width: 480px) {
+@media (min-width: 280px) {
     #container {
         width: 250px;
         height: 250px;
@@ -159,6 +159,10 @@ body {
     }
     .progressbar-text {
         font-size: 30px !important;
+    }
+
+    .github {
+        display: none;
     }
 }
 
