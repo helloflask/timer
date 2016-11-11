@@ -176,6 +176,10 @@ body {
     .progressbar-text {
         font-size: 50px !important;
     }
+
+    .github {
+        display: block;
+    }
 }
 
 @media (min-width: 980px) {
@@ -188,6 +192,10 @@ body {
     .progressbar-text {
         font-size: 70px !important;
     }
+
+    .github {
+        display: block;
+    }
 }
 
 @media (min-width: 1200px) {
@@ -198,5 +206,9 @@ body {
     }
     .progressbar-text {
         font-size: 80px !important;
+    }
+
+    .github {
+        display: block;
     }
 }
