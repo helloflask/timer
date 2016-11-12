@@ -1,4 +1,4 @@
-# timer-flask
+# timer
 A simple countdown timer made with Flask and JavaScript.
 
 ## DEMO
