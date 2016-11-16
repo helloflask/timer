@@ -140,14 +140,6 @@ body {
   margin: auto;
 }
 
-.quote {
-    font-size:18px;
-    width: 100%;
-    position: fixed;
-    bottom: 20px;
-    text-align: center;
-}
-
 .footer {
   position: fixed;
   bottom: 10px;
@@ -169,7 +161,7 @@ body {
         font-size: 30px !important;
     }
 
-    .github, .quote {
+    .github {
         display: none;
     }
 }
@@ -185,7 +177,7 @@ body {
         font-size: 50px !important;
     }
 
-    .github, .quote {
+    .github {
         display: block;
     }
 }
@@ -201,7 +193,7 @@ body {
         font-size: 70px !important;
     }
 
-    .github, .quote {
+    .github {
         display: block;
     }
 }
@@ -216,7 +208,7 @@ body {
         font-size: 80px !important;
     }
 
-    .github, .quote {
+    .github {
         display: block;
     }
 }

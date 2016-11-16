@@ -48,11 +48,6 @@
     </div>
 </div>
 
-<div class="quote">
-    <p id="quote"></p>
-	<i id="author"></i>
-</div>
-
 <div class="footer">
     <a href="http://withlihui.com" target="_blank">Blog</a> /
     <a href="https://zhuanlan.zhihu.com/flask" target="_blank">Hello, Flask!</a>
@@ -105,15 +100,4 @@ bar.animate(1.0);  // Number from 0.0 to 1.0
   ga('create', 'UA-87062131-1', 'auto');
   ga('send', 'pageview');
 </script>
-
-<script type="text/javascript">
-    function parseQuote(response)
-    {
-        document.getElementById("quote").innerHTML = response.quoteText;
-        document.getElementById("author").innerHTML = response.quoteAuthor;
-    }
-</script>
-
-<script type="text/javascript" src="http://api.forismatic.com/api/1.0/?method=getQuote&amp;format=jsonp&amp;lang=en&amp;jsonp=parseQuote"></script>
-
 {% endblock %}
