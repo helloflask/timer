@@ -4,7 +4,7 @@ body {
 }
 
 .time-input {
-  width: 150px;
+  width: 120px;
   height: 25px;
   border-radius: 5px;
 }
@@ -93,9 +93,10 @@ body {
 .helpButton {
     background: #000;
     padding: 5px 10px;
-    margin-left: 20px;
+    margin-left: 10px;
     color: #fff;
     cursor: pointer;
+    border-radius: 3px;
 }
 
 .usage {
@@ -139,14 +140,21 @@ body {
   margin: auto;
 }
 
+.quote {
+    font-size:18px;
+    width: 100%;
+    position: fixed;
+    bottom: 20px;
+    text-align: center;
+}
+
 .footer {
   position: fixed;
   bottom: 10px;
   right: 10px;
   text-align: center;
   padding: 10px;
-  border: 2px solid #000;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  border: 1px solid #d5d5d5;
 }
 
 /* responsive media queries */
@@ -161,7 +169,7 @@ body {
         font-size: 30px !important;
     }
 
-    .github {
+    .github, .quote {
         display: none;
     }
 }
@@ -177,7 +185,7 @@ body {
         font-size: 50px !important;
     }
 
-    .github {
+    .github, .quote {
         display: block;
     }
 }
@@ -193,7 +201,7 @@ body {
         font-size: 70px !important;
     }
 
-    .github {
+    .github, .quote {
         display: block;
     }
 }
@@ -208,7 +216,7 @@ body {
         font-size: 80px !important;
     }
 
-    .github {
+    .github, .quote {
         display: block;
     }
 }

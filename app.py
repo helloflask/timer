@@ -7,7 +7,7 @@ github: github.com/greyli
 column: zhuanlan.zhihu.com/flask
 ---------------------------------
 A simple timer made with Flask and JavaScript.
-https://github.com/helloflask/timer-flask
+https://github.com/helloflask/timer
 ---------------------------------
 MIT license.
 """
