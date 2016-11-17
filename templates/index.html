@@ -43,9 +43,12 @@
 <a class="github" href="https://github.com/helloflask/timer" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
 
 <div class="timer">
-    <div id="container">
-        <h2 id="time"></h2>
-    </div>
+    <p id="time"></p>
+</div>
+
+<div class="quote">
+    <p id="quote"></p>
+	<i id="author"></i>
 </div>
 
 <div class="footer">
@@ -56,39 +59,9 @@
 
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-<script src="{{ url_for('static', filename='js/progressbar.js') }}"></script>
 <script src="{{ url_for('static', filename='js/timer.js') }}"></script>
 <script>
   var Minutes = {{ num }};
-
-// progress bar
-var bar = new ProgressBar.Circle(container, {
-    color: '#eee',
-    // This has to be the same size as the maximum width to
-    // prevent clipping
-    strokeWidth: 4,
-    trailWidth: 2,
-    easing: 'linear',
-    duration: {{ num * 1000 + 1040 }},
-    text: {
-    autoStyleContainer: false
-    },
-    from: { color: '#FFEA82', width: 2 },
-    to: { color: '#4CAF50', width: 4 },
-      // Set default step function for all animate calls
-  step: function(state, circle) {
-    circle.path.setAttribute('stroke', state.color);
-    circle.path.setAttribute('stroke-width', state.width);
-var barText = $("#time").html();
-    circle.setText(barText);
-  }
-});
-bar.text.style.fontFamily = 'FranklinGothic, Verdana, Arial, sans-serif';
-bar.text.style.fontSize = '80px';
-bar.text.style.fontWeight = 'bold';
-bar.text.style.color = '#000';
-
-bar.animate(1.0);  // Number from 0.0 to 1.0
 </script>
 
 <script>
@@ -100,4 +73,15 @@ bar.animate(1.0);  // Number from 0.0 to 1.0
   ga('create', 'UA-87062131-1', 'auto');
   ga('send', 'pageview');
 </script>
+
+<script type="text/javascript">
+    function parseQuote(response)
+    {
+        document.getElementById("quote").innerHTML = response.quoteText;
+        document.getElementById("author").innerHTML = response.quoteAuthor;
+    }
+</script>
+
+<script type="text/javascript" src="http://api.forismatic.com/api/1.0/?method=getQuote&amp;format=jsonp&amp;lang=en&amp;jsonp=parseQuote"></script>
+
 {% endblock %}

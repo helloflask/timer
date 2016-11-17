@@ -122,22 +122,23 @@ body {
 }
 
 .timer {
-    position: absolute;
+    font-family: FranklinGothic, Verdana, Arial, sans-serif;
+    font-size: 150px;
+    font-weight: bold;
+    color: #000;
     margin: 0;
     padding: 0;
     text-align: center;
+    width: 1000px;
+    height: 500px;
+}
+
+.quote {
+    font-size:18px;
     width: 100%;
-    vertical-align: middle;
-}
-
-#time {
-     display: none;
-}
-
-#container {
-  width: 550px;
-  height: 550px;
-  margin: auto;
+    position: fixed;
+    bottom: 20px;
+    text-align: center;
 }
 
 .footer {
@@ -152,63 +153,55 @@ body {
 /* responsive media queries */
 
 @media (min-width: 280px) {
-    #container {
-        width: 250px;
-        height: 250px;
-       margin: auto;
+    .timer {
+        font-size: 60px;
     }
     .progressbar-text {
         font-size: 30px !important;
     }
 
-    .github {
+    .github, .quote {
         display: none;
     }
 }
 
 @media (min-width: 768px) {
-    #container {
-        width: 350px;
-        height: 350px;
-        margin: auto;
+    .timer {
+        font-size: 90px;
     }
 
     .progressbar-text {
         font-size: 50px !important;
     }
 
-    .github {
+    .github, .quote {
         display: block;
     }
 }
 
 @media (min-width: 980px) {
-    #container {
-        width: 500px;
-        height: 500px;
-        margin: auto;
+    .timer {
+        font-size: 120px;
     }
 
     .progressbar-text {
         font-size: 70px !important;
     }
 
-    .github {
+    .github, .quote {
         display: block;
     }
 }
 
 @media (min-width: 1200px) {
-    #container {
-        width: 550px;
-        height: 550px;
-        margin: auto;
+    .timer {
+        font-size: 150px;
     }
     .progressbar-text {
         font-size: 80px !important;
     }
 
-    .github {
+    .github, .quote {
         display: block;
     }
 }
