@@ -9,7 +9,9 @@ function startTimer(duration, display) {
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        display.text(minutes + " : " + seconds);
+        var output = minutes + " : " + seconds;
+        display.text(output);
+        $("title").html(output + " - TimerTimer");
 
         if (--timer < 0) {
             display.text("Time's Up!");
