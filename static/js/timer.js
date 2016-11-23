@@ -30,19 +30,6 @@ jQuery(function ($) {
     startTimer(Minutes, display);
 });
 
-// center the content
-$(window).resize(function(){
-
-	$('.timer').css({
-		position:'absolute',
-		left: ($(window).width() - $('.timer').outerWidth())/2,
-		top: ($(window).height() - $('.timer').outerHeight())/2
-	});
-
-});
-
-// To initially run the function:
-$(window).resize();
 // show help information
 $('#help-info').hide();
 $('#help-btn').hover( function() { $('#help-info').toggle(); } );
