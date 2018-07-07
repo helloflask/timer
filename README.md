@@ -7,9 +7,9 @@ http://timertimer.herokuapp.com/
 ![demo](https://raw.githubusercontent.com/helloflask/timer/master/static/demo.png)
 
 ## Versions
-Flask==0.11.1  
-Jinja2==2.8  
-Werkzeug==0.11.11  
+Flask==1.0.2 
+Jinja2==2.10 
+Werkzeug==0.14.1
 
 ## Installation
 Change to app directory, use `virtualenv` create and activate virtual enviroment.  
