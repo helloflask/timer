@@ -15,12 +15,11 @@ Werkzeug==0.14.1
 Change to app directory, use `virtualenv` create and activate virtual enviroment.  
 Then use `pip` to install requirements：  
 ```
-pip install -r requirements.txt
+$ pip install -r requirements.txt
 ```
 Run:  
-```
-set FLASK_APP=app.py    
-flask run
+```  
+$ flask run
 ```
 
 Go to http://127.0.0.1:5000/
