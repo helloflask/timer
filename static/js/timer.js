@@ -27,7 +27,7 @@ $(document).ready(function() {
     // start timer
     jQuery(function ($) {
         var display = $('#time');
-        startTimer(Minutes, display);
+        startTimer(Seconds, display);
     });
 
     // show help information
